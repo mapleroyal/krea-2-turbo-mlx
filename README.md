@@ -1,6 +1,6 @@
 # krea-2-turbo-mlx
 
-This project downloads the official full-precision (bf16) Krea 2 Turbo Diffusers release and converts it to a full-precision MLX artifact for use on Apple Silicon Macs.
+This project provides a local graphical image generation interface for Krea 2 Turbo on Apple Silicon Macs, backed by tooling that downloads the official full-precision (bf16) Diffusers release and converts it to a full-precision MLX artifact.
 
 ## Screenshots
 
@@ -48,12 +48,12 @@ From the project root, run:
 ./setup.sh
 ```
 
-This bootstraps the local toolchain, creates `.venv/`, installs the locked Python runtime dependencies, opens the setup choices page, then continues in Terminal to download, convert, and validate the model. When setup finishes, it creates `Launch Krea 2 Turbo.command`.
+This bootstraps the local toolchain, creates `.venv/`, installs the locked Python runtime dependencies, opens the setup choices page, then continues in Terminal to download, convert, and validate the model. When setup finishes, it creates `Launch.command`.
 
 After setup, double-click:
 
 ```text
-Launch Krea 2 Turbo.command
+Launch.command
 ```
 
 To use saved/default setup choices without opening the setup page:
@@ -80,9 +80,17 @@ The GUI server binds to `127.0.0.1:8765` by default and uses a per-session token
 
 These runtime folders are ignored by git.
 
+## Conversion Details
+
+Setup converts the official Krea 2 Turbo Diffusers source into an MLX-ready artifact. The conversion keeps the runtime weights full precision: it preserves source tensor dtypes and bytes, does not quantize or upcast weights, and keeps runtime key names aligned with the source layout.
+
+The converter first builds an exact safetensors manifest, applies the `m1-full-precision-v1` tensor selection policy, checks available disk space, then writes the artifact atomically. Runtime tensors are selected for the Apple Silicon text-to-image path: all transformer tensors are kept, the text encoder keeps `language_model.*`, and the VAE keeps only decode-side tensors. Unused visual, language-model head, VAE encode-side, and duplicate root `turbo.safetensors` tensors are excluded.
+
+Each artifact includes `artifact.json` for quick validation and `conversion_report.json` as the full tensor-level audit trail. See `docs/artifact-contract.md` for the complete artifact layout and selection contract.
+
 ## Command Model
 
-For most users, `./setup.sh` is the installer and `Launch Krea 2 Turbo.command` is the launcher.
+For most users, `./setup.sh` is the installer and `Launch.command` is the launcher.
 
 Advanced commands are available after setup through the project-local executable:
 

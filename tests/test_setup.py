@@ -121,7 +121,7 @@ def test_setup_downloads_converts_validates_and_writes_launcher(
 
     assert run_setup_cli(args, stream=StringIO()) == 0
     assert calls == ["download", "convert", "doctor"]
-    assert (tmp_path / "Launch Krea 2 Turbo.command").is_file()
+    assert (tmp_path / "Launch.command").is_file()
 
 
 def test_gui_launcher_delegates_to_launch_script(

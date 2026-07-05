@@ -8,7 +8,7 @@ const SHORTCUT_SECTIONS = [
       { keys: ["modifier", "Enter"], label: "Generate" },
       { keys: ["Esc", "Esc"], joiner: "then", label: "Cancel current" },
       { keys: ["Esc"], label: "Clear queue after cancel" },
-      { keys: ["=", "-"], joiner: "/", label: "Batch count" },
+      { keys: ["+", "-"], joiner: "/", label: "Batch count" },
     ],
   },
   {

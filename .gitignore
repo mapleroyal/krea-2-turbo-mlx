@@ -11,7 +11,7 @@ __pycache__/
 /.venv/
 /.toolchain/
 /.krea-2-turbo-mlx/
-/Launch Krea 2 Turbo.command
+/Launch.command
 
 /models/
 /artifacts/

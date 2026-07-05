@@ -43,6 +43,7 @@ def test_static_index_validates_host_and_bootstraps_only_with_valid_token(
             preauth = response.read().decode("utf-8")
         assert "auth_required" in preauth
         assert str(state.config.artifact_dir) not in preauth
+        assert '"ui_settings": null' in preauth
         assert token not in preauth
         assert "token=" not in preauth
 

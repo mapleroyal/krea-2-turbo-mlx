@@ -54,7 +54,7 @@ DEFAULT_OUTPUT_PATH = DEFAULT_OUTPUT_DIR / "krea-2-turbo.png"
 DEFAULT_OUTPUT_TEMPLATE = (
     "krea-{batch_index:04d}-p{prompt_index:02d}-i{image_index:02d}-seed{seed}.png"
 )
-DEFAULT_GUI_LAUNCHER = "Launch Krea 2 Turbo.command"
+DEFAULT_GUI_LAUNCHER = "Launch.command"
 
 TEXT_ENCODER_SELECT_LAYERS = (2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35)
 KREA_TEXT_PROMPT_PREFIX = (

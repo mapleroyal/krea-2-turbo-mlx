@@ -2788,7 +2788,10 @@ def _preauth_initial_status() -> dict[str, Any]:
         "recent": [],
         "output_dir": {"path": ""},
         "loras": {"dir": "", "items": [], "warnings": [], "scanned_at_ms": None},
-        "ui_settings": _default_gui_settings(),
+        # Do not present default settings as authoritative before the browser
+        # has authenticated; the client may already have the token in
+        # sessionStorage and will hydrate from /api/status after boot.
+        "ui_settings": None,
         "constraints": {},
         "events": [],
         "task": {"name": None, "started_ms": None, "completed_ms": None},

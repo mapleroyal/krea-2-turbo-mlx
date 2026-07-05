@@ -166,19 +166,19 @@ def test_gui_ui_settings_persist_to_project_settings_file(tmp_path: Path) -> Non
         {
             "theme": "dark",
             "generation": {
-                "width": "512",
+                "width": 512,
                 "height": 768,
-                "steps": "10",
+                "steps": 10,
                 "randomization_locked": True,
             },
             "live_preview": {
                 "mode": "Latent",
-                "interval_steps": "3",
+                "interval_steps": 3,
             },
             "loras": [{"id": "style.safetensors", "scale": 2.5}],
             "simple_batch": {
                 "enabled": True,
-                "count": "4",
+                "count": 4,
             },
         }
     )
@@ -244,11 +244,11 @@ def test_gui_index_html_bootstraps_script_safe_initial_status() -> None:
 
     result = gui._index_html_with_initial_status(html, status)
 
-    assert b"__KREA2_TURBO_MLX_INITIAL_STATUS__" in result
+    initial_status_global = gui._INITIAL_STATUS_GLOBAL.encode("utf-8")
+
+    assert initial_status_global in result
     assert b"\\u003c/script>" in result
-    assert result.index(b"__KREA2_TURBO_MLX_INITIAL_STATUS__") < result.index(
-        b"</head>"
-    )
+    assert result.index(initial_status_global) < result.index(b"</head>")
 
 
 def test_gui_validation_rejects_invalid_payloads() -> None:
