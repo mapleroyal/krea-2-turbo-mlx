@@ -1,0 +1,13 @@
+krea-2-turbo-mlx
+Copyright 2026 krea-2-turbo-mlx contributors
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+This product bundles third-party software in its included GUI build. Their
+licenses and copyright notices are listed in THIRD-PARTY-NOTICES.md, including
+the SIL Open Font License text that must accompany the redistributed Geist
+fonts.
+
+The Krea 2 Turbo model weights are not part of this repository and are governed
+separately by Krea's model-weight community license:
+https://huggingface.co/krea/Krea-2-Turbo/blob/main/LICENSE.pdf

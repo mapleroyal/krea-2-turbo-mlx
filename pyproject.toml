@@ -1,0 +1,51 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "krea-2-turbo-mlx"
+version = "0.1.0"
+description = "MLX-native tooling for full-precision Krea 2 Turbo conversion and inference."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+authors = [
+  { name = "krea-2-turbo-mlx contributors" }
+]
+keywords = ["krea", "mlx", "diffusion", "text-to-image", "apple-silicon"]
+dependencies = [
+  "huggingface-hub>=0.24",
+]
+
+[project.optional-dependencies]
+runtime = [
+  "mlx>=0.29.4,<0.30",
+  "numpy>=1.26",
+  "pillow>=10",
+  "safetensors>=0.4",
+  "transformers>=5.2",
+]
+dev = [
+  "numpy>=1.26",
+  "pytest>=8",
+]
+oracle = [
+  "accelerate>=0.34",
+  "diffusers @ git+https://github.com/huggingface/diffusers.git@bd2c91958881b777260eedb1c3d61d01c03e800f",
+  "numpy>=1.26",
+  "torch>=2.4",
+  "transformers>=5.2",
+]
+
+[project.scripts]
+krea-2-turbo-mlx = "krea_2_turbo_mlx.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/krea_2_turbo_mlx"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
