@@ -21,11 +21,7 @@ import { PromptForm } from "@/components/workspace/prompt-form";
 import { SettingsSheet } from "@/components/workspace/settings-sheet";
 import { SourceImageDialog } from "@/components/workspace/source-image-dialog";
 import { StatusDot } from "@/components/workspace/status-dot";
-import {
-  EjectIcon,
-  VerticalColumn03Icon,
-  VerticalColumn03NotFoundIcon,
-} from "@/lib/icons";
+import { EjectIcon, VerticalColumn03Icon } from "@/lib/icons";
 import {
   BATCH_JOB_STATUSES,
   TASK_PHASES,
@@ -1790,10 +1786,12 @@ export function KreaWorkspace() {
               )}
               expanded={galleryExpanded}
               fallbackPrecision={fallbackPrecision}
+              galleryVisible={galleryVisible}
               imageUrl={imageUrl}
               items={recent}
               onDelete={handleDeleteImage}
               onExpandedChange={handleGalleryExpandedChange}
+              onGalleryVisibleToggle={handleGalleryVisibleToggle}
               onLoadSettings={handleLoadImageSettings}
               onOpenOutputDir={() => runAction(openOutputDir)}
               onSelect={handleSelectImage}
@@ -1892,15 +1890,15 @@ function WorkspaceTopBar({
       </div>
 
       <div className="flex min-w-0 shrink-0 items-center justify-end gap-2">
-        <IconActionButton
-          ariaLabel={galleryVisible ? "Hide gallery" : "Show gallery"}
-          expanded={galleryVisible}
-          icon={
-            galleryVisible ? VerticalColumn03NotFoundIcon : VerticalColumn03Icon
-          }
-          onClick={onGalleryVisibleToggle}
-          tooltip={galleryVisible ? "Hide gallery" : "Show gallery"}
-        />
+        {!galleryVisible && (
+          <IconActionButton
+            ariaLabel="Show gallery"
+            expanded={false}
+            icon={VerticalColumn03Icon}
+            onClick={onGalleryVisibleToggle}
+            tooltip="Show gallery"
+          />
+        )}
         <SettingsSheet
           busy={busy}
           livePreviewMode={livePreviewMode}

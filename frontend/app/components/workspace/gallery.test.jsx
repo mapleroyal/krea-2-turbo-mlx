@@ -102,4 +102,31 @@ describe("Gallery", () => {
     expect(html).toContain("Gallery");
     expect(html).toContain("3 unseen generated images");
   });
+
+  it("places the hide control between gallery layout and output folder actions", () => {
+    const html = renderToString(
+      <TooltipProvider>
+        <Gallery
+          expanded={false}
+          fallbackPrecision="bf16"
+          imageUrl={(url) => url}
+          items={[]}
+          onDelete={() => {}}
+          onExpandedChange={() => {}}
+          onGalleryVisibleToggle={() => {}}
+          onOpenOutputDir={() => {}}
+          onSelect={() => {}}
+          selectedId={null}
+        />
+      </TooltipProvider>,
+    );
+
+    const expandIndex = html.indexOf('aria-label="Expand gallery"');
+    const hideIndex = html.indexOf('aria-label="Hide gallery"');
+    const outputIndex = html.indexOf('aria-label="Open output folder"');
+
+    expect(expandIndex).toBeGreaterThan(-1);
+    expect(hideIndex).toBeGreaterThan(expandIndex);
+    expect(outputIndex).toBeGreaterThan(hideIndex);
+  });
 });

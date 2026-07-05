@@ -3,7 +3,10 @@ import FolderOpenIcon from "@hugeicons/core-free-icons/FolderOpenIcon";
 import GridViewIcon from "@hugeicons/core-free-icons/GridViewIcon";
 import ScanImageIcon from "@hugeicons/core-free-icons/ScanImageIcon";
 
-import { VerticalColumn03Icon } from "@/lib/icons";
+import {
+  VerticalColumn03Icon,
+  VerticalColumn03NotFoundIcon,
+} from "@/lib/icons";
 import { cn } from "@/lib/utils";
 import { formatMeta, modelVariantLabel } from "@/lib/workspace";
 
@@ -14,10 +17,12 @@ export function Gallery({
   className,
   expanded,
   fallbackPrecision,
+  galleryVisible = true,
   imageUrl,
   items,
   onDelete,
   onExpandedChange,
+  onGalleryVisibleToggle,
   onLoadSettings,
   onOpenOutputDir,
   onSelect,
@@ -84,6 +89,13 @@ export function Gallery({
               icon={expanded ? VerticalColumn03Icon : GridViewIcon}
               onClick={handleExpandedChange}
               tooltip={expanded ? "Collapse gallery" : "Expand gallery"}
+            />
+            <IconActionButton
+              ariaLabel="Hide gallery"
+              expanded={galleryVisible}
+              icon={VerticalColumn03NotFoundIcon}
+              onClick={onGalleryVisibleToggle}
+              tooltip="Hide gallery"
             />
             <IconActionButton
               ariaLabel="Open output folder"
