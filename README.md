@@ -2,6 +2,18 @@
 
 This project downloads the official full-precision (bf16) Krea 2 Turbo Diffusers release and converts it to a full-precision MLX artifact for use on Apple Silicon Macs.
 
+## Screenshots
+
+<p align="center">
+  <img src="docs/screenshots/main-gui.webp" alt="Krea 2 Turbo MLX generation UI with gallery" width="900">
+</p>
+
+| Gallery grid | Gallery detail | JSON batch |
+| --- | --- | --- |
+| <img src="docs/screenshots/gallery-grid.webp" alt="Gallery grid view" width="280"> | <img src="docs/screenshots/gallery-detail.webp" alt="Gallery detail overlay with prompt controls" width="280"> | <img src="docs/screenshots/json-batch.webp" alt="Run batch from JSON dialog" width="280"> |
+| Settings | Load settings | Main workspace |
+| <img src="docs/screenshots/settings.webp" alt="Settings drawer with live preview controls" width="280"> | <img src="docs/screenshots/load-settings.webp" alt="Load settings from image dialog" width="280"> | <img src="docs/screenshots/main-gui.webp" alt="Generation workspace with output preview" width="280"> |
+
 ## Features
 
 - One-command setup flow with GUI or CLI.
